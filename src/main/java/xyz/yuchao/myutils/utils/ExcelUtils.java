@@ -50,4 +50,18 @@ public class ExcelUtils {
     }
 
 
+    public static void createExcel(String outExcelFilePath,List<Map<String,Object>> valueList,Map<String,String> headNameMap){
+        Assert.notEmpty(valueList,"valueList Can't not empty");
+        HSSFWorkbook wb = new HSSFWorkbook();
+        HSSFSheet sheet = wb.createSheet("Sheet1");
+        List<String> heads = new ArrayList<>(headNameMap.keySet());
+        int rowNum=0;
+        HSSFRow headRow = sheet.createRow(rowNum++);
+        for(int i=0;i<heads.size();i++){
+            HSSFCell cell = headRow.createCell(i);
+            cell.setCellValue(String.valueOf(headNameMap.get(heads.get(i))));
+        }
+    }
+
+
 }
